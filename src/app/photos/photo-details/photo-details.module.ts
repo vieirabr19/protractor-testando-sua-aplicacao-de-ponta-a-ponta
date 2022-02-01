@@ -10,18 +10,18 @@ import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
-    declarations: [
-        PhotoDetailsComponent, 
-        PhotoCommentsComponent,
-        PhotoOwnerOnlyDirective
-    ],
-    exports: [
-        PhotoDetailsComponent, 
-        PhotoCommentsComponent
-    ],
-    imports: [
-        PhotoModule,
-        SharedModule
-    ]
+  declarations: [
+    PhotoDetailsComponent,
+    PhotoCommentsComponent,
+    PhotoOwnerOnlyDirective
+  ],
+  exports: [
+    PhotoDetailsComponent,
+    PhotoCommentsComponent
+  ],
+  imports: [
+    PhotoModule,
+    SharedModule
+  ]
 })
 export class PhotoDetailsModule { }

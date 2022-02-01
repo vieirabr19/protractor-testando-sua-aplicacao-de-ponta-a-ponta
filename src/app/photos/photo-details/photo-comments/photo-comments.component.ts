@@ -7,32 +7,30 @@ import { PhotoService } from "../../photo/photo.service";
 import { PhotoComment } from "../../photo/photo-comment";
 
 @Component({
-    selector: 'ap-photo-comments',
-    templateUrl: './photo-comments.component.html',
-    styleUrls: ['photo-comments.scss']
+  selector: 'ap-photo-comments',
+  templateUrl: './photo-comments.component.html',
+  styleUrls: ['photo-comments.scss']
 })
-export class PhotoCommentsComponent implements OnInit { 
+export class PhotoCommentsComponent implements OnInit {
 
-    @Output() onAdd = new EventEmitter<string>();
-    @Input() comments: PhotoComment[];
-    commentForm: FormGroup;
+  @Output() onAdd = new EventEmitter<string>();
+  @Input() comments: PhotoComment[];
+  commentForm: FormGroup;
 
-    constructor(
-        private photoService: PhotoService,
-        private formBuilder: FormBuilder
-    ) {}
+  constructor(
+    private photoService: PhotoService,
+    private formBuilder: FormBuilder
+  ) { }
 
-    ngOnInit(): void {
-        this.commentForm = this.formBuilder.group({
-            comment: [
-                '', [Validators.required,Validators.maxLength(300)]
-            ]
-        });
-    }
+  ngOnInit(): void {
+    this.commentForm = this.formBuilder.group({
+      comment: ['', [Validators.required, Validators.maxLength(300)]]
+    });
+  }
 
-    save() {
-        const comment = this.commentForm.get('comment').value as string;
-        this.commentForm.reset();
-        this.onAdd.emit(comment);
-    }
+  save() {
+    const comment = this.commentForm.get('comment').value as string;
+    this.commentForm.reset();
+    this.onAdd.emit(comment);
+  }
 }

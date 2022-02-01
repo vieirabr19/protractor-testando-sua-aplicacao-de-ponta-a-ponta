@@ -39,7 +39,7 @@
               "jwt-decode",
               "stacktrace-gps",
               "stack-generator"
-           ]
+            ]
           },
           "configurations": {
             "production": {
@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "protractor-test"
+  "defaultProject": "protractor-test",
+  "cli": {
+    "analytics": false
+  }
 }

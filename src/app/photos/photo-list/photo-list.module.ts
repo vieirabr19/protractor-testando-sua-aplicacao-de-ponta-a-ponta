@@ -11,18 +11,20 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../../shared/shared.module';
+import { PhotoDetailsModule } from '../photo-details/photo-details.module';
 
 @NgModule({
-    declarations: [
-        PhotoListComponent,
-        PhotosComponent,
-        LoadButtonComponent,
-        FilterByDescription,
-        SearchComponent
-    ],
-    imports: [ 
-        PhotoModule,
-        SharedModule
-    ]
+  declarations: [
+    PhotoListComponent,
+    PhotosComponent,
+    LoadButtonComponent,
+    FilterByDescription,
+    SearchComponent
+  ],
+  imports: [
+    PhotoModule,
+    SharedModule,
+    PhotoDetailsModule
+  ]
 })
-export class PhotoListModule {}
+export class PhotoListModule { }
