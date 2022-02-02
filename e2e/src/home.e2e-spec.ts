@@ -1,25 +1,47 @@
-import { browser, element, by, protractor } from 'protractor';
+import { browser, logging } from 'protractor';
+import { HomePage } from './home.po';
+import { PhotoDetailPage } from './photo-detail.po';
+
 
 describe('Home page', () => {
 
+  let homePage: HomePage;
+  let photoDetailPage: PhotoDetailPage;
+
+  afterEach(async () => {
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    expect(logs).not.toContain(jasmine.objectContaining({
+      level: logging.Level.SEVERE
+    } as logging.Entry));
+  });
+
+  beforeEach(async () => {
+    homePage = new HomePage();
+    photoDetailPage = new PhotoDetailPage();
+
+    await homePage.getNavigationTo();
+  });
+
   it('Should navigate to user profile', async () => {
-    await browser.get(`${browser.baseUrl}/#/user/flavio`);
-    const title = await browser.getTitle();
-    expect(title).toEqual('Timeline');
+    const title = await homePage.getWindowTitle();
+    expect(title).toEqual(HomePage.PAGE_TITLE);
   });
 
   it('Should display a list of photos', async () => {
-    const list = element.all(by.css('.photo'));
-    const photoListSize = await list.count();
+    const photoListSize = await homePage.getPhotoListSize();
     expect(photoListSize).toBeGreaterThan(0);
   });
 
   it('Should navigate to photo detail when photo navigation is triggered', async () => {
-    await browser.get(`${browser.baseUrl}/#/user/flavio`);
-    const firstElement = element.all(by.css('.photo')).first();
-    await firstElement.sendKeys(protractor.Key.ENTER);
-    const title = await browser.getTitle();
-    expect(title).toBe('Photo detail');
+    await homePage.getClickOnFirstItemFromPhotoList();
+    const title = await photoDetailPage.getWindowTitle();
+    expect(title).toBe(PhotoDetailPage.PAGE_TITLE);
+  });
+
+  it('Should list one item when filtering by word "farol"', async () => {
+    await homePage.getFillSearchInputWith('farol');
+    const photoListSize = await homePage.getPhotoListSize();
+    expect(photoListSize).toBe(1);
   });
 
 });
