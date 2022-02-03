@@ -28,19 +28,19 @@ describe('Home page', () => {
   });
 
   it('Should display a list of photos', async () => {
-    const photoListSize = await homePage.getPhotoListSize();
+    const photoListSize = await homePage.photoListSize();
     expect(photoListSize).toBeGreaterThan(0);
   });
 
   it('Should navigate to photo detail when photo navigation is triggered', async () => {
-    await homePage.getClickOnFirstItemFromPhotoList();
+    await homePage.clickOnFirstItemFromPhotoList();
     const title = await photoDetailPage.getWindowTitle();
     expect(title).toBe(PhotoDetailPage.PAGE_TITLE);
   });
 
   it('Should list one item when filtering by word "farol"', async () => {
-    await homePage.getFillSearchInputWith('farol');
-    const photoListSize = await homePage.getPhotoListSize();
+    await homePage.fillSearchInputWith('farol');
+    const photoListSize = await homePage.photoListSize();
     expect(photoListSize).toBe(1);
   });
 

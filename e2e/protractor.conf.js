@@ -13,7 +13,10 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['--incognito']
+    }
   },
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
@@ -28,10 +31,27 @@ exports.config = {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
     });
+    // @ts-ignore
     jasmine.getEnv().addReporter(new SpecReporter({
       spec: {
         displayStacktrace: StacktraceOption.PRETTY
       }
     }));
+
+    // @ts-ignore
+    browser.driver.get('http://localhost:4200/#/home');
+    // @ts-ignore
+    browser.findElement(by.id('username')).sendKeys('flavio');
+    // @ts-ignore
+    browser.findElement(by.id('password')).sendKeys('123');
+    // @ts-ignore
+    browser.findElement(by.id('login-button')).click();
+    // @ts-ignore
+    return browser.driver.wait(() => {
+      // @ts-ignore
+      return browser.driver.getCurrentUrl().then(url => {
+        return /user/.test(url);
+      });
+    }, 10000);
   }
 };

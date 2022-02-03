@@ -12,20 +12,20 @@ export class HomePage {
     return browser.getTitle();
   }
 
-  getPhotoListSize(){
+  photoListSize(){
     return element
       .all(by.css('.photo'))
       .count();
   }
 
-  getClickOnFirstItemFromPhotoList(){
+  clickOnFirstItemFromPhotoList(){
     return element
       .all(by.css('.photo'))
       .first()
       .sendKeys(protractor.Key.ENTER);
   }
 
-  getFillSearchInputWith(text: string) {
+  fillSearchInputWith(text: string) {
     return element
       .all(by.css('ap-search input[type=search]'))
       .sendKeys(text);

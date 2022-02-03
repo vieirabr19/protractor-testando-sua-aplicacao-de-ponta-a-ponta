@@ -17,9 +17,7 @@
         <hr>
       </small>
 
-      <ap-photo-comments *ngIf="photo.allowComments; else warnning" (onAdd)="addComment($event)"
-        [comments]="comments$ | async">
-      </ap-photo-comments>
+      <ap-photo-comments *ngIf="photo.allowComments; else warnning" (onAdd)="addComment($event)" [comments]="comments$ | async"></ap-photo-comments>
 
       <ng-template #warnning>
         <p>User has disabled comments for this photo</p>
