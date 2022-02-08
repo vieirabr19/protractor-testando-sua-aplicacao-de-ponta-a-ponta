@@ -47,9 +47,9 @@ export class PhotoFormComponent implements OnInit {
       }))
       .subscribe(
         (event: HttpEvent<any>) => {
-          if(event.type == HttpEventType.UploadProgress) {
+          if (event.type == HttpEventType.UploadProgress) {
             this.percentDone = Math.round(100 * event.loaded / event.total);
-          } else if(event.type == HttpEventType.Response) {
+          } else if (event.type == HttpEventType.Response) {
             this.alertService.success('Upload complete', true);
           }
         },

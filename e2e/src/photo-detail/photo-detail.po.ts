@@ -5,10 +5,10 @@ export class PhotoDetailPage {
   static PAGE_TITLE = 'Photo detail';
 
   getNavigateTo(id: number){
-    return browser.get(`${browser.baseUrl}/#/p/${id}`);
+    return browser.get(`${browser.baseUrl}#/p/${id}`);
   }
 
-  getWindowTitle() {
+  getTitle() {
     return browser.getTitle();
   }
 

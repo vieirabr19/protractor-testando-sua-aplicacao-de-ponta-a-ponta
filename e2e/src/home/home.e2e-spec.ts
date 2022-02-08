@@ -1,6 +1,6 @@
 import { browser, logging } from 'protractor';
+import { PhotoDetailPage } from '../photo-detail/photo-detail.po';
 import { HomePage } from './home.po';
-import { PhotoDetailPage } from './photo-detail.po';
 
 
 describe('Home page', () => {
@@ -23,7 +23,7 @@ describe('Home page', () => {
   });
 
   it('Should navigate to user profile', async () => {
-    const title = await homePage.getWindowTitle();
+    const title = await homePage.getTitle();
     expect(title).toEqual(HomePage.PAGE_TITLE);
   });
 
@@ -34,7 +34,7 @@ describe('Home page', () => {
 
   it('Should navigate to photo detail when photo navigation is triggered', async () => {
     await homePage.clickOnFirstItemFromPhotoList();
-    const title = await photoDetailPage.getWindowTitle();
+    const title = await photoDetailPage.getTitle();
     expect(title).toBe(PhotoDetailPage.PAGE_TITLE);
   });
 

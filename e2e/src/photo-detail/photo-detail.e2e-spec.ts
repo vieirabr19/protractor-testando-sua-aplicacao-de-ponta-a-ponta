@@ -3,7 +3,7 @@ import { PhotoDetailPage } from './photo-detail.po';
 
 describe('Photo detail page', () => {
 
-  let photoDetailPage: PhotoDetailPage;
+  let photoDetailPage: PhotoDetailPage = null;
 
   afterEach(async () => {
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
@@ -18,7 +18,7 @@ describe('Photo detail page', () => {
   });
 
   it('Should be on Photo detail page', async () => {
-    const title = await photoDetailPage.getWindowTitle();
+    const title = await photoDetailPage.getTitle();
     expect(title).toEqual(PhotoDetailPage.PAGE_TITLE);
   });
 
